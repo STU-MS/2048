@@ -38,7 +38,7 @@ tools/
 | 五 | 状态图 | `docs/05-状态图.md` | `reports/lab05.md` | `st-01`、`st-02` |
 | 六 | 时序图 | `docs/06-时序图.md` | `reports/lab06.md` | `sq-01`~`sq-06` |
 | 七 | MDA 建模项目实例 | `docs/07-MDA总报告.md` | `reports/lab07.md` | `bc-01` + 复用 |
-| 八 | 版本控制 | `docs/08-版本控制实验.md` | `reports/lab08.md` | Git 记录 |
+| 八 | 版本控制 | `docs/08-版本控制实验.md` | `reports/lab08.md` | Git（分支侧修改） |
 
 ## 图的生成流程
 
