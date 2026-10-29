@@ -1,0 +1,21 @@
+flowchart TD
+    start((开始))
+    judge{判定结果}
+    hintWin([提示“本局胜利”])
+    hintLose([提示“本局失败”])
+    choose([等待玩家选择])
+    pick{玩家选择}
+    restart([清空棋盘并开始新的一局])
+    quit([退出游戏])
+    done((结束))
+
+    start --> judge
+    judge -->|出现 2048，判定胜利| hintWin
+    judge -->|棋盘已满且任意方向都无法移动，判定失败| hintLose
+    hintWin --> choose
+    hintLose --> choose
+    choose --> pick
+    pick -->|重新开始| restart
+    pick -->|退出| quit
+    restart --> done
+    quit --> done

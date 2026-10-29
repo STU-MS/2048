@@ -1,0 +1,20 @@
+flowchart TD
+    start((开始))
+    clear([清空棋盘])
+    reset([生成计数器置 0])
+    loop{计数器是否小于 2}
+    gen([在随机空位生成一个 2 或 4])
+    inc([计数器加 1])
+    zero([得分归零])
+    running([状态置为进行中])
+    done((结束))
+
+    start --> clear
+    clear --> reset
+    reset --> loop
+    loop -->|是，未满两个方块| gen
+    gen --> inc
+    inc --> loop
+    loop -->|否，已生成两个方块| zero
+    zero --> running
+    running --> done
