@@ -8,44 +8,42 @@
 
 ```
 docs/
-  00-规范.md          # 唯一口径：功能、用例、类、图文件清单、写作与报告规范
-  01-选题与功能.md     # 实验一
-  02-用例与用例叙述.md  # 实验二
-  03-类图.md          # 实验三
-  04-活动图.md         # 实验四
-  05-状态图.md         # 实验五
-  06-时序图.md         # 实验六
-  07-MDA总报告.md      # 实验七（CIM1-3 + PIM1-4）
-  08-版本控制实验.md    # 实验八（Git）
+  00-规范.md           # 唯一口径：功能、用例、类、图名、写作与报告规范
   materials/          # 课程原始材料（指导书、样例报告、UML 手册、课件）
-  reports/            # 八份实验报告（Markdown 源 + 导出的 PDF）
-models/
-  drafts/             # Mermaid 草稿（.mmd）
-  exports/            # 渲染/导出的图（.png），报告按文件名引用
-  2048.mdj            # StarUML 工程（交付用，由组员用 StarUML 7 生成）
-tools/
-  render.sh           # 把 drafts 批量渲染为 exports
+  reports/
+    lab01.md          # 实验一  UML 概念与工具安装、选题与功能
+    lab02.md          # 实验二  用例图与用例叙述
+    lab03.md          # 实验三  类图
+    lab04.md          # 实验四  活动图
+    lab05.md          # 实验五  状态图
+    lab06.md          # 实验六  时序图
+    lab07.md          # 实验七  MDA 建模项目实例（CIM1-3 + PIM1-4）
+    lab08.md          # 实验八  版本控制
+    pdf/              # 交付用 PDF（按学校封面模板导出后放这里）
 ```
+
+八份报告各自自包含：正文、表格、图全部在一份文件里，图用 ```mermaid 代码块内联，
+不依赖任何外部图片文件。
 
 ## 实验进度
 
-| 实验 | 主题 | 文档 | 报告 | 主要图 |
-|---|---|---|---|---|
-| 一 | UML 概念与工具安装、选题与功能 | `docs/01-选题与功能.md` | `reports/lab01.md` | 安装截图 |
-| 二 | 用例图与用例叙述 | `docs/02-用例与用例叙述.md` | `reports/lab02.md` | `uc-01` |
-| 三 | 类图 | `docs/03-类图.md` | `reports/lab03.md` | `cd-01` |
-| 四 | 活动图 | `docs/04-活动图.md` | `reports/lab04.md` | `ad-01`~`ad-03` |
-| 五 | 状态图 | `docs/05-状态图.md` | `reports/lab05.md` | `st-01`、`st-02` |
-| 六 | 时序图 | `docs/06-时序图.md` | `reports/lab06.md` | `sq-01`~`sq-06` |
-| 七 | MDA 建模项目实例 | `docs/07-MDA总报告.md` | `reports/lab07.md` | `bc-01` + 复用 |
-| 八 | 版本控制 | `docs/08-版本控制实验.md` | `reports/lab08.md` | Git 记录（含冲突演示） |
+| 实验 | 主题 | 报告 | 主要图 |
+|---|---|---|---|
+| 一 | UML 概念与工具安装、选题与功能 | `docs/reports/lab01.md` | StarUML 安装截图 |
+| 二 | 用例图与用例叙述 | `docs/reports/lab02.md` | `uc-01` |
+| 三 | 类图 | `docs/reports/lab03.md` | `cd-01` |
+| 四 | 活动图 | `docs/reports/lab04.md` | `ad-01`~`ad-03` |
+| 五 | 状态图 | `docs/reports/lab05.md` | `st-01`、`st-02` |
+| 六 | 时序图 | `docs/reports/lab06.md` | `sq-01`~`sq-06` |
+| 七 | MDA 建模项目实例 | `docs/reports/lab07.md` | `bc-01` + 复用上列 |
+| 八 | 版本控制 | `docs/reports/lab08.md` | Git 提交记录 |
 
-## 图的生成流程
+## 图的处理
 
-1. 在 `models/drafts/` 写 Mermaid 草稿，`bash tools/render.sh` 渲染到 `models/exports/`。
-2. 交付版用 StarUML 7 打开对应 Mermaid 代码（Tools ▸ Generate Diagram by Mermaid），
-   排版微调后**导出同名 PNG 覆盖** `models/exports/` 中的文件，报告无需改动。
-3. 用例图 `uc-01` 与业务用例图 `bc-01` 无 Mermaid 对应类型，直接在 StarUML 中绘制。
+- 报告内的图以 ```mermaid 代码块内联，GitHub / VS Code / Typora 都能直接渲染。
+- 需要交付 StarUML 版本时，把对应代码块贴进 StarUML 7 的 Tools ▸ Generate Diagram by Mermaid，
+  排版微调后截图替换代码块即可；用例图 `uc-01`、`bc-01` 需在 StarUML 中手绘。
+- 仓库不保存 PNG、`.mmd` 源文件与渲染脚本，避免中间产物堆积。
 
 ## 已知取舍
 
