@@ -1,0 +1,55 @@
+classDiagram
+    direction LR
+
+    class Game {
+        +int 得分
+        +int 最高分
+        +GameState 状态
+        +int 步数
+        +开始新局()
+        +移动(方向: Direction) bool
+        +判定胜利() bool
+        +判定结束() bool
+        +结算()
+    }
+
+    class Board {
+        +Tile[4][4] 格子
+        +int 空格数
+        +滑动(方向: Direction) bool
+        +合并()
+        +可移动() bool
+        +随机生成() Tile
+    }
+
+    class Tile {
+        +int 数值
+        +int 行
+        +int 列
+        +bool 是否新生成
+        +升级()
+        +清空()
+    }
+
+    class Record {
+        +int 最高分
+        +Score[] 最近得分
+        +Date 时间戳
+        +读取最高分() int
+        +更新(分数: int)
+        +追加(分数: int)
+    }
+
+    class GameState {
+        <<enumeration>>
+        未开始
+        进行中
+        胜利
+        失败
+        已结束
+    }
+
+    Game "1" *-- "1" Board : 组合
+    Board "1" o-- "0..16" Tile : 聚合
+    Game "1" --> "1" Record : 关联
+    Game ..> GameState : 依赖
