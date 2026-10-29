@@ -1,0 +1,15 @@
+# StarUML 与 Office 产生的临时文件
+*.mdj.bak
+*.mdj~
+*~$*
+~$*
+
+# 系统
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 工具链
+node_modules/
+package-lock.json
+*.log

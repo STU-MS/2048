@@ -1,0 +1,11 @@
+# 统一换行，Office/PDF/图片按二进制处理
+* text=auto eol=lf
+
+*.doc binary
+*.docx binary
+*.ppt binary
+*.pptx binary
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
