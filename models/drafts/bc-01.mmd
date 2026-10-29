@@ -1,0 +1,29 @@
+%% bc-01 CIM-1 业务用例图（业务视角）
+%% 对应文档：docs/07-MDA总报告.md 第 1 节；报告：docs/reports/lab07.md
+%% 说明：业务执行者“玩家”位于业务边界之外，业务用例“进行一局 2048”由四项子业务构成。
+flowchart LR
+    Player((玩家))
+
+    subgraph BIZ["业务边界：2048 单机滑块合并游戏"]
+        direction TB
+        BU([进行一局 2048])
+
+        subgraph SUB["业务用例的子业务"]
+            direction TB
+            B1([开始对局])
+            B2([滑动合并])
+            B3([查看得分])
+            B4([结束对局])
+        end
+
+        BU -.->|include| B1
+        BU -.->|include| B2
+        BU -.->|include| B3
+        BU -.->|include| B4
+
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+    end
+
+    Player --> BU
