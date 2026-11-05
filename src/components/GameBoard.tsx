@@ -1,4 +1,5 @@
 import { Card } from 'animal-island-ui'
+import { CROP_ASSETS } from '../game/assets'
 import type { Board as BoardType } from '../game/engine'
 
 interface GameBoardProps {
@@ -37,18 +38,28 @@ export function GameBoard({ board }: GameBoardProps) {
             const key = `${r}-${c}`
             if (tile === null) return <div key={key} className="cell-soil" />
             const info = tileInfo(tile.value)
+            const art = CROP_ASSETS[tile.value]
+            const anim = [
+              tile.merged ? 'tile-merged' : '',
+              tile.spawned ? 'tile-spawned' : '',
+            ]
+              .filter(Boolean)
+              .join(' ')
             return (
               <div key={key} className="cell-soil">
-                <Card
-                  color={info.color}
-                  pattern={info.pattern}
-                  className={['tile', tile.merged ? 'tile-merged' : '', tile.spawned ? 'tile-spawned' : '']
-                    .filter(Boolean)
-                    .join(' ')}
-                >
-                  <span className="tile-value">{tile.value}</span>
-                  <span className="tile-name">{info.name}</span>
-                </Card>
+                {art ? (
+                  // 贴图模式：无底色容器，透明处直接露出泥土
+                  <div className={['tile-art-tile', anim].filter(Boolean).join(' ')}>
+                    <img src={art} alt={info.name} className="tile-art" draggable={false} />
+                    <span className="tile-value tile-value-overlay">{tile.value}</span>
+                  </div>
+                ) : (
+                  // 占位模式：保留原色卡 + 文字
+                  <Card color={info.color} pattern={info.pattern} className={['tile', anim].filter(Boolean).join(' ')}>
+                    <span className="tile-value">{tile.value}</span>
+                    <span className="tile-name">{info.name}</span>
+                  </Card>
+                )}
               </div>
             )
           }),

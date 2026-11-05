@@ -95,6 +95,15 @@
   opacity: 0.85;
 }
 
+/* art 模式：不带底色的容器，直接叠在土块上，透明处露出泥土色 */
+.tile-art-tile {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  user-select: none;
+}
+
 /* art 模式：整张贴图填满土块 */
 .tile-art {
   width: 100%;
@@ -102,6 +111,25 @@
   object-fit: contain;
   user-select: none;
   pointer-events: none;
+}
+
+/* art 模式数字叠加层：定位在贴图下方色块区（约下 40% 区域）垂直水平居中，
+   手绘风描边（四向 text-shadow 硬描边 + 底部投影）保证任意色块上可读 */
+.tile-value-overlay {
+  position: absolute;
+  /* 色块占贴图下 40%：top 60% 至 bottom 0，数字在此区域内居中 */
+  top: 60%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(14px, 3.2vw, 20px);
+  color: #fff;
+  paint-order: stroke fill;
+  -webkit-text-stroke: 3px #4a3520;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
 }
 
 /* ---------- 动画（仅出生与合并）---------- */
