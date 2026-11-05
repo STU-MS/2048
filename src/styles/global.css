@@ -1,0 +1,163 @@
+/* ============================================
+   2048 · 开心农场 —— 布局与动画
+   视觉全部来自 animal-island-ui 组件：
+   Background / Cursor / Card(color+pattern) / Footer
+   此文件只负责摆位置和动画，不含任何主题色。
+   ============================================ */
+
+.page {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 24px 24px 0;
+  box-sizing: border-box;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: min(94vw, 560px);
+}
+
+.page-hint {
+  margin: 0;
+  font-size: 13px;
+  color: #725d42;
+  opacity: 0.8;
+  user-select: none;
+}
+
+.page-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* ---------- 农田棋盘：brown 田埂外框 + 每格一整块波点泥土 Card ---------- */
+
+.board-frame {
+  width: 100%;
+  display: flex;
+  border-radius: 24px;
+  padding: 12px; /* 覆写 Card 默认内边距，这就是四周田埂的宽度 */
+  box-shadow: 0 10px 24px rgba(90, 62, 38, 0.3);
+}
+
+.board-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px; /* 格与格之间露出的 brown Card 就是田埂 */
+}
+
+/* 土格子：库 brown #9a835a，3D 硬阴影隆起（同库 Button 的做法：实色无模糊投影） */
+.cell-soil {
+  aspect-ratio: 1;
+  position: relative;
+  display: flex;
+  border-radius: 12px;
+  padding: 4px; /* 土块里再留一点松土边 */
+  background: #9a835a;
+  box-shadow: 4px 4px 0 color-mix(in srgb, #9a835a 70%, black); /* 右下实色硬阴影，隆起感 */
+}
+
+/* ---------- 作物卡片：填满土块 + 文字排版 ---------- */
+
+.tile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  padding: 2px;
+  border-radius: 12px;
+  user-select: none;
+}
+
+.tile-value {
+  font-size: clamp(16px, 4.2vw, 26px);
+  font-weight: 800;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.tile-name {
+  font-size: clamp(10px, 2vw, 12px);
+  line-height: 1.2;
+  opacity: 0.85;
+}
+
+/* art 模式：整张贴图填满土块 */
+.tile-art {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------- 动画（仅出生与合并）---------- */
+
+@keyframes tile-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.4;
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes tile-pulse {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.14);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tile-spawned {
+  animation: tile-pop 0.22s ease-out;
+}
+
+.tile-merged {
+  animation: tile-pulse 0.24s ease-out;
+}
+
+/* ---------- 结算弹窗 ---------- */
+
+.end-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.end-modal-body p {
+  margin: 0;
+}
+
+.end-modal-score strong {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.end-modal-record {
+  color: #c77b2e;
+  font-weight: 700;
+}
